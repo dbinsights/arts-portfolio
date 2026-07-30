@@ -1,4 +1,12 @@
 {
   "schemaVersion": 1,
-  "artworks": []
+  "artworks": [
+    {
+      "id": "2026-07-30-232034",
+      "image": "images/2026-07-30-232034.jpg",
+      "createdAt": "2026-07-30T23:20:34+12:00",
+      "title": null,
+      "description": null
+    }
+  ]
 }
