@@ -7,59 +7,24 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header><h1>Art Portfolio</h1></header>
+<header>
+  <h1 id="site-title">Art Portfolio</h1>
+  <p id="site-bio" hidden></p>
+</header>
 <main id="gallery"><p class="status">Loading…</p></main>
-<script>
-async function load() {
-  const gallery = document.getElementById('gallery');
-  try {
-    const res = await fetch('manifest.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const manifest = await res.json();
-    if (manifest.schemaVersion !== 1) throw new Error('Unsupported manifest version');
-    const artworks = [...manifest.artworks].sort(
-      (a, b) => b.createdAt.localeCompare(a.createdAt)
-    );
-    if (artworks.length === 0) {
-      gallery.innerHTML = '<p class="status">No artworks yet.</p>';
-      return;
-    }
-    gallery.innerHTML = '';
-    for (const art of artworks) {
-      const fig = document.createElement('figure');
-      const link = document.createElement('a');
-      link.href = art.image;
-      const img = document.createElement('img');
-      img.src = art.image;
-      img.loading = 'lazy';
-      img.alt = art.title || 'Artwork ' + art.id;
-      link.appendChild(img);
-      fig.appendChild(link);
-      if (art.title || art.description) {
-        const cap = document.createElement('figcaption');
-        if (art.title) {
-          const h = document.createElement('h2');
-          h.textContent = art.title;
-          cap.appendChild(h);
-        }
-        if (art.description) {
-          const p = document.createElement('p');
-          p.textContent = art.description;
-          cap.appendChild(p);
-        }
-        fig.appendChild(cap);
-      }
-      gallery.appendChild(fig);
-    }
-  } catch (err) {
-    gallery.innerHTML = '';
-    const p = document.createElement('p');
-    p.className = 'status';
-    p.textContent = 'Could not load the gallery: ' + err.message;
-    gallery.appendChild(p);
-  }
-}
-load();
-</script>
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Artwork viewer" hidden>
+  <button type="button" class="lb-close" aria-label="Close">×</button>
+  <button type="button" class="lb-prev" aria-label="Previous artwork">‹</button>
+  <figure class="lb-figure">
+    <img id="lb-image" alt="">
+    <figcaption>
+      <h2 id="lb-title"></h2>
+      <p id="lb-date"></p>
+      <p id="lb-desc"></p>
+    </figcaption>
+  </figure>
+  <button type="button" class="lb-next" aria-label="Next artwork">›</button>
+</div>
+<script src="assets/gallery.js"></script>
 </body>
 </html>

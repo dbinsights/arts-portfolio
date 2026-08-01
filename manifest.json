@@ -1,5 +1,9 @@
 {
   "schemaVersion": 1,
+  "site": {
+    "title": "Jason Liu",
+    "bio": "Paintings & sketches"
+  },
   "artworks": [
     {
       "id": "2026-07-30-232034",
