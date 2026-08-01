@@ -60,6 +60,13 @@
       "createdAt": "2026-07-31T22:32:20+12:00",
       "title": "Round the Bay",
       "description": "Auckland"
+    },
+    {
+      "id": "2026-08-02-000910",
+      "image": "images/2026-08-02-000910.jpg",
+      "createdAt": "2026-08-02T00:09:10+12:00",
+      "title": "Taupo",
+      "description": null
     }
   ]
 }
